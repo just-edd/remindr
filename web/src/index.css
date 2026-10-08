@@ -21,6 +21,8 @@
     --color-scheduled: linear-gradient(135deg, #ff6b6b, #e8283c);
     --color-flagged: linear-gradient(135deg, #ffb347, #ff8c00);
     --color-all: linear-gradient(135deg, #a8adb5, #636366);
+
+    --color-category-default: linear-gradient(135deg, #8e9eab 0%, #5f6c7b 100%);
 }
 
 * {
@@ -29,6 +31,8 @@
     box-sizing: border-box;
     font-family: var(--font-family);
 }
+
+::-webkit-scrollbar { width: 0; height: 0; }
 
 body {
     height: 100vh;

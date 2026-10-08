@@ -153,20 +153,71 @@ aside .filter-cards .filter-card header .icon-box {
 }
 
 aside .filter-cards .filter-card:hover header .icon-box { background: #ffffff; }
-aside .filter-cards .filter-card:hover header .icon-box i {
+aside .filter-cards .filter-card:hover header .icon-box i,
+aside .categories .category .left-side .icon-box i {
     background: var(--card-color);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
 }
-aside .filter-cards .filter-card:hover { 
+aside .filter-cards .filter-card:hover,
+aside .categories .category:hover { 
     color: #ffffff;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
 }
 
 /* Reminders categories */
 aside .my-reminders {
     color: var(--color-text-muted);
     font-size: 13px;
+}
+
+aside .categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow: auto;
+}
+
+aside .categories .category {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(10px);
+    border: solid 1px rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 0.3rem 1rem 0.3rem 0.3rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+aside .categories .category .left-side {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+aside .categories .category .left-side .icon-box {
+    background: #ffffff;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside .categories .category .left-side .description {
+    display: flex;
+    flex-direction: column;
+}
+
+aside .categories .category .left-side .description p { font-size: 15px; }
+aside .categories .category .left-side .description span {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1;
 }

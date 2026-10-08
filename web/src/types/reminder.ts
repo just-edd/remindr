@@ -3,9 +3,9 @@ export type ID = string;
 export type Priority = 'low' | 'medium' | 'high';
 
 export interface Category {
-    id: ID;
     name: string;
     color?: string;
+    icon?: string;
     createdAt: Date;
 };
 
@@ -14,7 +14,7 @@ export interface Reminder {
     title: string;
     note?: string;
     priority: Priority;
-    categoryId?: string;
+    category?: string;
     dueAt?: Date;
     done: boolean;
     createdAt: Date;
