@@ -1,0 +1,2 @@
+- Create a design for remindr app
+- Create a functional frontend (with modals and pages switching)
