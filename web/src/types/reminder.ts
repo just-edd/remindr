@@ -1,12 +1,32 @@
-export type Reminder = {
-    id: string;
-    title: string;
-    description?: string;
+export type ID = string;
 
-    dueDate: string;
-    dueTime?: string;
+export type Priority = 'low' | 'medium' | 'high';
 
-    completed: boolean;
-
-    category?: string;
+export interface Category {
+    id: ID;
+    name: string;
+    color?: string;
+    createdAt: Date;
 };
+
+export interface Reminder {
+    id: ID;
+    title: string;
+    note?: string;
+    priority: Priority;
+    categoryId?: string;
+    dueAt?: Date;
+    done: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    flagged?: boolean;
+};
+
+export interface ReminderFilter {
+    categoryId?: ID;
+    done?: boolean;
+    priority?: Priority;
+    dueBefore?: Date;
+};
+
+export const DEFAULT_CATEGORY_ID: ID = "general";

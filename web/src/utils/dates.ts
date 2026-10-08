@@ -1,23 +1,9 @@
-export function isToday(date: string): boolean {
+export const isToday = (date: Date): boolean => {
     const today = new Date();
-    const targetDate = new Date(date);
 
     return (
-        today.getFullYear() === targetDate.getFullYear() &&
-        today.getMonth() === targetDate.getMonth() &&
-        today.getDay() === targetDate.getDay()
-    );
-};
-
-export function isTomorrow(date: string): boolean {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    const targetDate = new Date(date);
-
-    return (
-        tomorrow.getFullYear() === targetDate.getFullYear() &&
-        tomorrow.getMonth() === targetDate.getMonth() &&
-        tomorrow.getDay() === targetDate.getDay()
+        date.getFullYear() === today.getFullYear() &&
+        date.getMonth() === today.getMonth() &&
+        date.getDate() === today.getDate()
     );
 };

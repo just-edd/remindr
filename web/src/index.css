@@ -1,36 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import "tailwindcss";
 
 :root {
-    --color-today: oklch(62.3% 0.214 259.815);
-    --color-scheduled: oklch(63.7% 0.237 25.331);
-    --color-all: oklch(55.2% 0.016 285.938);
-    --color-flagged: oklch(68.1% 0.162 75.834);
+    --font-family: 'Nunito';
+
+    --width: 61rem;
+    --height: 36rem;
+
+    --padding: 1.25rem; /* Padding from border's app */
+
+    --color-background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, .35), transparent 35%),
+        radial-gradient(circle at 90% 90%, rgba(168, 85, 247, .3), transparent 35%),
+        #0f172a;
+
+    --color-text: #cbd5e1;
+    --color-headline: linear-gradient(135deg, #c9d4fa, #a08bf5);
+    --color-text-muted: #94a3b8;
+    --color-accent: #a5b4fc;
+
+    --color-today: linear-gradient(135deg, #4facfe, #007aff);
+    --color-scheduled: linear-gradient(135deg, #ff6b6b, #e8283c);
+    --color-flagged: linear-gradient(135deg, #ffb347, #ff8c00);
+    --color-all: linear-gradient(135deg, #a8adb5, #636366);
 }
 
 * {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    font-family: 'Nunito';
+    font-family: var(--font-family);
 }
 
 body {
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60rem;
-    height: 36rem;
-    background: #19131D;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    color: #a8a8a8;
+    width: var(--width);
+    height: var(--height);
+    background: var(--color-background);
+    border-radius: 0.5rem;
+    border: solid 1px rgba(255, 255, 255, 0.5);
     overflow: hidden;
-}
-
-aside, main {
-    padding: 1.25rem;
 }

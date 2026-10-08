@@ -1,27 +1,37 @@
 import '../styles/sidebar.css';
-import '../index.css';
-import Category from './Category';
+import SidebarFilterCard from './SidebarFilterCard';
 
 const Sidebar: React.FC = () => {
     return (
         <aside>
-            <header className='flex gap-1.5'>
-                <button className='bg-[#FD4F48] hover:bg-[#b15048]'></button>
-                <button className='bg-[#FFB825] hover:bg-[#b8923b]'></button>
-                <button className='bg-[#1FC230] hover:bg-[#4a9741]'></button>
+            <header>
+                <div className="controls">
+                    <button className='close'><i className="fa-solid fa-xmark"></i></button>
+                    <button className='maximize'><i className="fa-regular fa-window-minimize"></i></button>
+                    <button className='minimize'><i className="fa-regular fa-window-maximize"></i></button>
+                </div>
+
+                <div className='headline'>
+                    <h1>Reminder App</h1>
+                    <p>v0.0.0</p>
+                </div>
             </header>
 
-            <form className='search'>
-                <i className="hgi hgi-stroke hgi-rounded hgi-search-01 text-sm"></i>
+            <form>
+                <i className="hgi hgi-stroke hgi-rounded hgi-search-01"></i>
                 <input type="text" placeholder='Search' />
             </form>
 
-            <div className="categories grid grid-cols-2 gap-2">
-                <Category number={17} color='--color-today' label='Today' icon='hgi hgi-stroke hgi-rounded hgi-calendar-01' />
-                <Category number={17} color='--color-scheduled' label='Scheduled' icon='hgi hgi-stroke hgi-rounded hgi-calendar-03' />
-                <Category number={0} color='--color-all' label='All' icon='hgi hgi-stroke hgi-rounded hgi-archive-02' />
-                <Category number={12} color='--color-flagged' label='Flagged' icon='hgi hgi-stroke hgi-rounded hgi-flag-02' />
+            <div className='filter-cards'>
+                <SidebarFilterCard icon='calendar-01' label='Today' number={17} color='var(--color-today)' />
+                <SidebarFilterCard icon='calendar-03' label='Scheduled' number={17} color='var(--color-scheduled)' />
+                <SidebarFilterCard icon='archive-02' label='All' number={34} color='var(--color-all)' />
+                <SidebarFilterCard icon='flag-02' label='Flagged' number={0} color='var(--color-flagged)' />
             </div>
+
+            <p className='my-reminders'>My reminders</p>
+
+            
         </aside>
     )
 };
