@@ -1,15 +1,17 @@
 import '../styles/sidebar.css';
 import SidebarFilterCard from './SidebarFilterCard';
-import { useMemo } from 'react';
+import { useMemo, type Dispatch, type SetStateAction } from 'react';
 import { formatDate, isToday } from '../utils/dates';
 import type { Category, Reminder } from '../types/reminder';
 
 interface SidebarProps {
     reminders: Reminder[];
     categories: Category[];
-}
+    setActiveCategory: Dispatch<SetStateAction<string | null>>;
+    activeCategory: string | null;
+};
 
-const Sidebar: React.FC<SidebarProps> = ({ reminders, categories }) => {
+const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCategory, activeCategory }) => {
     const counts = useMemo(() => {
         const active = reminders.filter(r => !r.done);
         
@@ -63,7 +65,8 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories }) => {
 
             <div className="categories">
                 {categories.map((cat, index) => (
-                    <div className="category" key={index} style={{ '--card-color': cat.color || "var(--color-category-default)" } as React.CSSProperties}>
+                    <div className={`category ${activeCategory === cat.name && 'active'}`} key={index} style={{ '--card-color': cat.color || "var(--color-category-default)" } as React.CSSProperties}
+                    onClick={() => setActiveCategory(cat.name)}>
                         <div className="left-side">
                             {cat.icon && 
                                 <div className="icon-box">
@@ -71,7 +74,7 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories }) => {
                                 </div>
                             }
 
-                            <div className="description">
+                            <div className="description" style={{ paddingLeft: !cat.icon ? '0.5rem' : '0' }}>
                                 <p>{cat.name}</p>
                                 <span>Created at {formatDate(cat.createdAt)}</span>
                             </div>
@@ -80,6 +83,12 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories }) => {
                         <p>{categoryCount.get(cat.name)}</p>
                     </div>
                 ))}
+
+                {/* Add category */}
+                <button>
+                    <i className="hgi hgi-stroke hgi-rounded hgi-add-circle" aria-hidden></i>
+                    <p>Create category</p>
+                </button>
             </div>
         </aside>
     )

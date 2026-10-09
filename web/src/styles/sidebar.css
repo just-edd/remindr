@@ -161,7 +161,9 @@ aside .categories .category .left-side .icon-box i {
     -webkit-text-fill-color: transparent;
 }
 aside .filter-cards .filter-card:hover,
-aside .categories .category:hover { 
+aside .categories .category:hover,
+aside .categories button:hover,
+aside .categories .category.active { 
     color: #ffffff;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     cursor: pointer;
@@ -186,7 +188,8 @@ aside .categories {
 aside .categories::-webkit-scrollbar { width: 1px; }
 aside .categories::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
 
-aside .categories .category {
+aside .categories .category,
+aside .categories button {
     color: var(--color-text);
     background: rgba(255, 255, 255, 0.025);
     backdrop-filter: blur(10px);
@@ -213,10 +216,13 @@ aside .categories .category .left-side .icon-box {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-aside .categories .category:hover .left-side .icon-box { background: var(--card-color); }
-aside .categories .category:hover .left-side .icon-box i {
+aside .categories .category:hover .left-side .icon-box,
+aside .categories .category.active .left-side .icon-box { background: var(--card-color); }
+aside .categories .category:hover .left-side .icon-box i,
+aside .categories .category.active .left-side .icon-box i {
     background: none;
     -webkit-text-fill-color: #ffffff;
     color: #ffffff;
@@ -232,4 +238,27 @@ aside .categories .category .left-side .description span {
     font-size: 13px;
     color: var(--color-text-muted);
     line-height: 1;
+}
+
+aside .categories .category::before {
+    content: '';
+    position: absolute;
+    width: 0.3rem;
+    height: 1.5rem;
+    background: var(--card-color);
+    top: 50%; right: 100.5%;
+    transform: translateY(-50%);
+    border-radius: 0.5rem 0 0 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+aside .categories .category.active::before {
+    opacity: 1;
+}
+
+aside .categories button {
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0;
 }

@@ -7,9 +7,16 @@ const App: React.FC = () => {
   const [reminders, setReminders] = useState<Reminder[]>(remindersData);
   const [categories, setCategories] = useState<Category[]>(categoriesData);
 
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
   return (
     <div className="container">
-      <Sidebar reminders={reminders} categories={categories} />
+      <Sidebar 
+      reminders={reminders}
+      categories={categories}
+      setActiveCategory={setActiveCategory}
+      activeCategory={activeCategory}
+      />
     </div>
   )
 };
