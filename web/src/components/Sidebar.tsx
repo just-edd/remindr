@@ -1,8 +1,9 @@
 import '../styles/sidebar.css';
 import SidebarFilterCard from './SidebarFilterCard';
 import { useMemo, type Dispatch, type SetStateAction } from 'react';
-import { formatDate, isToday } from '../utils/dates';
+import { isToday } from '../utils/dates';
 import type { Category, Reminder } from '../types/reminder';
+import CategoryCard from './CategoryCard';
 
 interface SidebarProps {
     reminders: Reminder[];
@@ -64,24 +65,8 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCateg
             <p className='my-reminders'>My reminders</p>
 
             <div className="categories">
-                {categories.map((cat, index) => (
-                    <div className={`category ${activeCategory === cat.name && 'active'}`} key={index} style={{ '--card-color': cat.color || "var(--color-category-default)" } as React.CSSProperties}
-                    onClick={() => setActiveCategory(cat.name)}>
-                        <div className="left-side">
-                            {cat.icon && 
-                                <div className="icon-box">
-                                    <i className={cat.icon} aria-hidden></i>
-                                </div>
-                            }
-
-                            <div className="description" style={{ paddingLeft: !cat.icon ? '0.5rem' : '0' }}>
-                                <p>{cat.name}</p>
-                                <span>Created at {formatDate(cat.createdAt)}</span>
-                            </div>
-                        </div>
-
-                        <p>{categoryCount.get(cat.name)}</p>
-                    </div>
+                {categories.map(cat => (
+                    <CategoryCard data={cat} activeCategory={activeCategory === cat.name} setActiveCategory={setActiveCategory} count={categoryCount.get(cat.name)} />
                 ))}
 
                 {/* Add category */}

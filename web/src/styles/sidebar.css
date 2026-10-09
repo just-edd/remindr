@@ -247,14 +247,15 @@ aside .categories .category::before {
     height: 1.5rem;
     background: var(--card-color);
     top: 50%; right: 100.5%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scaleY(0);
     border-radius: 0.5rem 0 0 0.5rem;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 aside .categories .category.active::before {
     opacity: 1;
+    transform: translateY(-50%) scaleY(1);
 }
 
 aside .categories button {
