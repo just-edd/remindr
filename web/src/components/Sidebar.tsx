@@ -67,7 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories }) => {
                         <div className="left-side">
                             {cat.icon && 
                                 <div className="icon-box">
-                                    <i className={cat.icon}></i>
+                                    <i className={cat.icon} aria-hidden></i>
                                 </div>
                             }
 

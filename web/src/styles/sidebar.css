@@ -136,9 +136,8 @@ aside .filter-cards .filter-card header {
 
 aside .filter-cards .filter-card header p {
     font-size: 20px;
-    color: var(--color-accent);
+    color: var(--color-text);
     font-weight: 500;
-    filter: drop-shadow(0 0 5px var(--color-accent));
 }
 
 aside .filter-cards .filter-card header .icon-box {
@@ -179,7 +178,13 @@ aside .categories {
     flex-direction: column;
     gap: 0.5rem;
     overflow: auto;
+    padding: 1rem;
+    margin: -1rem;
+    margin-right: -1.35rem;
 }
+
+aside .categories::-webkit-scrollbar { width: 1px; }
+aside .categories::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
 
 aside .categories .category {
     color: var(--color-text);
@@ -208,6 +213,13 @@ aside .categories .category .left-side .icon-box {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+aside .categories .category:hover .left-side .icon-box { background: var(--card-color); }
+aside .categories .category:hover .left-side .icon-box i {
+    background: none;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
 }
 
 aside .categories .category .left-side .description {
