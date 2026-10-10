@@ -4,15 +4,15 @@ import { formatDate } from "../utils/dates";
 
 interface CategoryProps {
     data: Category; 
-    activeCategory: boolean;
-    setActiveCategory: Dispatch<SetStateAction<string | null>>;
-    count: number | undefined;
+    activeCategory?: boolean;
+    setActiveCategory?: Dispatch<SetStateAction<string | null>>;
+    count?: number;
 };
 
 const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActiveCategory, count }) => {
     return (
         <div className={`category ${activeCategory && 'active'}`} style={{ '--card-color': data.color || "var(--color-category-default)" } as React.CSSProperties}
-        onClick={() => setActiveCategory(data.name)}>
+        onClick={() => setActiveCategory?.(data.name)}>
             <div className="left-side">
                 {data.icon && 
                     <div className="icon-box">

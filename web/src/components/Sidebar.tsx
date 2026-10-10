@@ -10,9 +10,10 @@ interface SidebarProps {
     categories: Category[];
     setActiveCategory: Dispatch<SetStateAction<string | null>>;
     activeCategory: string | null;
+    onAddCategory?: () => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCategory, activeCategory }) => {
+const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCategory, activeCategory, onAddCategory }) => {
     const counts = useMemo(() => {
         const active = reminders.filter(r => !r.done);
         
@@ -70,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCateg
                 ))}
 
                 {/* Add category */}
-                <button>
+                <button onClick={onAddCategory}>
                     <i className="hgi hgi-stroke hgi-rounded hgi-add-circle" aria-hidden></i>
                     <p>Create category</p>
                 </button>

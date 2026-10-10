@@ -153,7 +153,7 @@ aside .filter-cards .filter-card header .icon-box {
 
 aside .filter-cards .filter-card:hover header .icon-box { background: #ffffff; }
 aside .filter-cards .filter-card:hover header .icon-box i,
-aside .categories .category .left-side .icon-box i {
+.category .left-side .icon-box i {
     background: var(--card-color);
     -webkit-background-clip: text;
     background-clip: text;
@@ -161,9 +161,9 @@ aside .categories .category .left-side .icon-box i {
     -webkit-text-fill-color: transparent;
 }
 aside .filter-cards .filter-card:hover,
-aside .categories .category:hover,
+.category:hover,
 aside .categories button:hover,
-aside .categories .category.active { 
+.category.active { 
     color: #ffffff;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     cursor: pointer;
@@ -188,7 +188,7 @@ aside .categories {
 aside .categories::-webkit-scrollbar { width: 1px; }
 aside .categories::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
 
-aside .categories .category,
+.category,
 aside .categories button {
     color: var(--color-text);
     background: rgba(255, 255, 255, 0.025);
@@ -202,13 +202,13 @@ aside .categories button {
     justify-content: space-between;
 }
 
-aside .categories .category .left-side {
+.category .left-side {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-aside .categories .category .left-side .icon-box {
+.category .left-side .icon-box {
     background: #ffffff;
     width: 1.5rem;
     height: 1.5rem;
@@ -219,41 +219,41 @@ aside .categories .category .left-side .icon-box {
     position: relative;
 }
 
-aside .categories .category:hover .left-side .icon-box,
-aside .categories .category.active .left-side .icon-box { background: var(--card-color); }
-aside .categories .category:hover .left-side .icon-box i,
-aside .categories .category.active .left-side .icon-box i {
+.category:hover .left-side .icon-box,
+.category.active .left-side .icon-box { background: var(--card-color); }
+.category:hover .left-side .icon-box i,
+.category.active .left-side .icon-box i {
     background: none;
     -webkit-text-fill-color: #ffffff;
     color: #ffffff;
 }
 
-aside .categories .category .left-side .description {
+.category .left-side .description {
     display: flex;
     flex-direction: column;
 }
 
-aside .categories .category .left-side .description p { font-size: 15px; }
-aside .categories .category .left-side .description span {
+.category .left-side .description p { font-size: 15px; }
+.category .left-side .description span {
     font-size: 13px;
     color: var(--color-text-muted);
     line-height: 1;
 }
 
-aside .categories .category::before {
+.category::before {
     content: '';
     position: absolute;
     width: 0.3rem;
     height: 1.5rem;
     background: var(--card-color);
-    top: 50%; right: 100.5%;
+    top: 50%; right: 100%;
     transform: translateY(-50%) scaleY(0);
     border-radius: 0.5rem 0 0 0.5rem;
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
 }
 
-aside .categories .category.active::before {
+.category.active::before {
     opacity: 1;
     transform: translateY(-50%) scaleY(1);
 }

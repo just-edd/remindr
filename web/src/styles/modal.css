@@ -1,0 +1,147 @@
+@import '../index.css';
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;   
+}
+
+.modal {
+    width: var(--modal-width);
+    background: var(--color-background);
+    backdrop-filter: blur(10px);
+    border-radius: 0.5rem;
+    border: solid 1px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 5rem #000;
+    padding: var(--padding);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Header */
+.modal header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal header .description {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal header .description p {
+    font-size: 20px;
+    filter: drop-shadow(0 0 15px var(--color-text));
+}
+
+.modal header i {
+    font-size: 25px;
+    color: var(--color-accent);
+    filter: drop-shadow(0 0 5px var(--color-accent));
+}
+
+.modal header .description span {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 13px;
+}
+
+/* Inputs */
+.modal .input-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.modal .input-wrapper .input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.modal .input-wrapper .input-box input::placeholder { color: var(--color-text-muted) }
+.modal .input-wrapper .input-box input:focus, .modal .input-wrapper .input-box input:hover { box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); }
+.modal .input-wrapper .input-box input {
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(10px);
+    outline: none;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    font-size: 14px;
+    color: var(--color-text);
+    border-radius: 0.3rem;
+    transition: box-shadow 0.3s;
+}
+
+.modal .input-wrapper .input-box input[type="color"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+}
+.modal .input-wrapper .input-box input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 0.3rem;
+}
+
+.modal .input-wrapper .input-box .description {
+    color: var(--color-text-muted);
+    font-size: 14px;
+}
+
+/* Footer */
+.modal footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.modal footer button {
+    position: relative;
+    width: 100%;
+    padding: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(10px);
+    border: solid 1px rgba(255, 255, 255, 0.05);
+    outline: none;
+    color: var(--color-text);
+    border-radius: 0.4rem;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal footer button:hover { background-color: transparent; border: none; }
+.modal footer button::before {
+    content: '';
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s, opacity 0.3s;
+}
+.modal footer button:hover::before {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.modal footer button.cancel::before { background: linear-gradient(135deg, #6b7280, #374151); }
+.modal footer button.create::before { background: linear-gradient(135deg, #4ade80, #16a34a); }
