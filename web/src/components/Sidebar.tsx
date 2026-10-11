@@ -11,9 +11,10 @@ interface SidebarProps {
     setActiveCategory: Dispatch<SetStateAction<string | null>>;
     activeCategory: string | null;
     onAddCategory?: () => void;
+    onRemoveCategory: (id: string) => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCategory, activeCategory, onAddCategory }) => {
+const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCategory, activeCategory, onAddCategory, onRemoveCategory }) => {
     const counts = useMemo(() => {
         const active = reminders.filter(r => !r.done);
         
@@ -29,8 +30,8 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCateg
         const map = new Map<string, number>();
 
         reminders.forEach(r => {
-            if (!r.category) return;
-            map.set(r.category, (map.get(r.category) ?? 0) + 1);
+            if (!r.categoryId) return;
+            map.set(r.categoryId, (map.get(r.categoryId) ?? 0) + 1);
         });
 
         return map;
@@ -67,7 +68,15 @@ const Sidebar: React.FC<SidebarProps> = ({ reminders, categories, setActiveCateg
 
             <div className="categories">
                 {categories.map(cat => (
-                    <CategoryCard data={cat} activeCategory={activeCategory === cat.name} setActiveCategory={setActiveCategory} count={categoryCount.get(cat.name)} />
+                    <div key={cat.id}>
+                        <CategoryCard 
+                        data={cat} 
+                        activeCategory={activeCategory === cat.id} 
+                        setActiveCategory={setActiveCategory} 
+                        count={categoryCount.get(cat.id)} 
+                        onRemoveCategory={onRemoveCategory}
+                        />
+                    </div>
                 ))}
 
                 {/* Add category */}

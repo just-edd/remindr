@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import '../styles/modal.css';
 import CategoryCard from './CategoryCard';
-import type { Category } from '../types/reminder';
+import type { Category, NewCategory } from '../types/reminder';
 
-type CategoryForm = Omit<Category, 'color' | 'createdAt'> & {
+type CategoryForm = NewCategory & {
     color1: string;
     color2: string;
-}
+};
 
 interface Props {
     onClose?: () => void;
-    onCreate?: (categoty: Category) => void;
+    onCreate?: (category: NewCategory) => void;
 };
 
 const CategoryModal: React.FC<Props> = ({ onClose, onCreate }) => {
@@ -27,10 +27,14 @@ const CategoryModal: React.FC<Props> = ({ onClose, onCreate }) => {
     };
 
     const { color1, color2, ...rest } = data;
-    const category: Category = {
+    const category: NewCategory = {
         ...rest,
-        color: `linear-gradient(135deg, ${color1}, ${color2})`,
-        createdAt: new Date()
+        color: `linear-gradient(135deg, ${color1}, ${color2})`
+    };
+    const preview: Category = {
+        ...category,
+        id: 'preview',
+        createdAt: new Date(),
     };
 
     return (
@@ -71,11 +75,11 @@ const CategoryModal: React.FC<Props> = ({ onClose, onCreate }) => {
                 </div>
 
                 <p>Preview</p>
-                <CategoryCard data={category} activeCategory={data.name !== ''} />
+                <CategoryCard data={preview} activeCategory={data.name !== ''} />
 
                 <footer>
                     <button onClick={onClose} className='cancel'>Cancel</button>
-                    <button onClick={() => onCreate?.(category)} className='create'>Create</button>
+                    <button onClick={() => onCreate?.(category)} className='create' disabled={!data.name.trim()}>Create</button>
                 </footer>
             </div>
         </div>

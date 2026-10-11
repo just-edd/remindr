@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { Category } from "../types/reminder";
+import type { Category  } from "../types/reminder";
 import { formatDate } from "../utils/dates";
 
 interface CategoryProps {
@@ -7,12 +7,13 @@ interface CategoryProps {
     activeCategory?: boolean;
     setActiveCategory?: Dispatch<SetStateAction<string | null>>;
     count?: number;
+    onRemoveCategory?: (id: string) => void;
 };
 
-const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActiveCategory, count }) => {
+const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActiveCategory, count, onRemoveCategory }) => {
     return (
         <div className={`category ${activeCategory && 'active'}`} style={{ '--card-color': data.color || "var(--color-category-default)" } as React.CSSProperties}
-        onClick={() => setActiveCategory?.(data.name)}>
+        onClick={() => setActiveCategory?.(activeCategory ? null : data.id)}>
             <div className="left-side">
                 {data.icon && 
                     <div className="icon-box">
@@ -26,7 +27,15 @@ const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActive
                 </div>
             </div>
 
-            <p>{count}</p>
+            <div className="right-side">
+                {onRemoveCategory && (
+                    <div className="icon-box" onClick={(e) => { e.stopPropagation(); onRemoveCategory(data.id); }}>
+                        <i className="hgi hgi-stroke hgi-rounded hgi-delete-02"></i>
+                    </div>
+                )}
+                
+                {!!count && <p>{count}</p>}
+            </div>
         </div>
     )
 };

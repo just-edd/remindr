@@ -2,7 +2,11 @@ export type ID = string;
 
 export type Priority = 'low' | 'medium' | 'high';
 
+export type NewCategory = Omit<Category, 'id' | 'createdAt'>;
+export type NewReminder = Omit<Reminder, 'id' | 'createdAt' | 'updatedAt' | 'done'>;
+
 export interface Category {
+    id: string;
     name: string;
     color?: string;
     icon?: string;
@@ -14,7 +18,7 @@ export interface Reminder {
     title: string;
     note?: string;
     priority: Priority;
-    category?: string;
+    categoryId?: ID;
     dueAt?: Date;
     done: boolean;
     createdAt: Date;
