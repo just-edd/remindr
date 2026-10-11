@@ -1,23 +1,30 @@
 import Sidebar from "./components/Sidebar";
-import type { Category, Reminder } from './types/reminder';
-import { reminders as remindersData, categories as categoriesData } from './data/mock';
+import type { NewCategory } from './types/reminder';
 import { useState } from "react";
 import CategoryModal from "./components/CategoryModal";
+import { useReminders } from "./hooks/useReminder";
 
 const App: React.FC = () => {
-  const [reminders, setReminders] = useState<Reminder[]>(remindersData);
-  const [categories, setCategories] = useState<Category[]>(categoriesData);
+  const { reminders, categories, loading, addCategory, removeCategory } = useReminders();
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState<boolean>(false);
 
-  const createCategory = (category: Category) => {
-    if(!category.name.trim())
-      return;
+  const createCategory = async (category: NewCategory) => {
+    const name = category.name.trim();
+    if (!name) return;
 
-    setCategories(prev => [...prev, category]);
+    // Check if category already exists
+    if (categories.some((c) => c.name.toLowerCase() === name.toLowerCase())) return;
+
+    await addCategory({ ...category, name });
     setIsCategoryModalOpen(false);
+  };
+
+  const deleteCategory = async (id: string) => {
+    await removeCategory(id);
+    if (activeCategory === id)
+      setActiveCategory(null);
   };
 
   return (
@@ -28,6 +35,7 @@ const App: React.FC = () => {
       setActiveCategory={setActiveCategory}
       activeCategory={activeCategory}
       onAddCategory={() => setIsCategoryModalOpen(true)}
+      onRemoveCategory={deleteCategory}
       />
 
       {isCategoryModalOpen && 

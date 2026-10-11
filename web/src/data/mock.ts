@@ -13,54 +13,63 @@ const ago = (days: number): Date => inDays(-days);
 
 export const categories: Category[] = [
   {
+    id: crypto.randomUUID(),
     name: "General",
     createdAt: ago(30),
     icon: "hgi hgi-stroke hgi-rounded hgi-apple-reminder",
     color: "linear-gradient(135deg, #8e9eab 0%, #5f6c7b 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Work",
     createdAt: ago(25),
     icon: "hgi hgi-stroke hgi-rounded hgi-briefcase-01",
     color: "linear-gradient(135deg, #4facfe 0%, #00c6fb 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Home",
     createdAt: ago(21),
     icon: "hgi hgi-stroke hgi-rounded hgi-home-11",
     color: "linear-gradient(135deg, #f7971e 0%, #ffd200 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Health",
     createdAt: ago(10),
     icon: "hgi hgi-stroke hgi-rounded hgi-health",
     color: "linear-gradient(135deg, #ff5f6d 0%, #ffc371 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Shopping",
     createdAt: ago(18),
     icon: "hgi hgi-stroke hgi-rounded hgi-shopping-cart-01",
     color: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Study",
     createdAt: ago(15),
     icon: "hgi hgi-stroke hgi-rounded hgi-book-open-01",
     color: "linear-gradient(135deg, #7f00ff 0%, #e100ff 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Travel",
     createdAt: ago(12),
     icon: "hgi hgi-stroke hgi-rounded hgi-airplane-01",
     color: "linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Finance",
     createdAt: ago(8),
     icon: "hgi hgi-stroke hgi-rounded hgi-money-bag-02",
     color: "linear-gradient(135deg, #f5af19 0%, #f12711 100%)",
   },
   {
+    id: crypto.randomUUID(),
     name: "Friends",
     createdAt: ago(5),
     icon: "hgi hgi-stroke hgi-rounded hgi-user-multiple",
@@ -73,7 +82,6 @@ export const reminders: Reminder[] = [
     id: "r1",
     title: "Send weekly report",
     note: "Include progress and blockers",
-    category: "Work",
     priority: "high",
     done: false,
     dueAt: inDays(0, 16),
@@ -83,7 +91,6 @@ export const reminders: Reminder[] = [
   {
     id: "r2",
     title: "Code review for PR #142",
-    category: "Work",
     priority: "medium",
     dueAt: inDays(1, 11),
     done: false,
@@ -93,7 +100,6 @@ export const reminders: Reminder[] = [
   {
     id: "r3",
     title: "Pay bills",
-    category: "Home",
     priority: "high",
     dueAt: inDays(-1, 12),
     done: false,
@@ -104,7 +110,6 @@ export const reminders: Reminder[] = [
   {
     id: "r4",
     title: "Clean house",
-    category: "Home",
     priority: "low",
     dueAt: inDays(0, 19),
     done: true,
@@ -115,7 +120,6 @@ export const reminders: Reminder[] = [
     id: "r5",
     title: "Call a dentist",
     note: "Make an appointment",
-    category: "Health",
     priority: "medium",
     dueAt: inDays(5, 10),
     done: false,
@@ -126,7 +130,6 @@ export const reminders: Reminder[] = [
     id: "r6",
     title: "Buy groceries",
     note: "Milk, eggs, bread, vegetables",
-    category: "Shopping",
     priority: "medium",
     dueAt: inDays(0, 18),
     done: false,
@@ -136,7 +139,6 @@ export const reminders: Reminder[] = [
   {
     id: "r7",
     title: "Order a birthday gift",
-    category: "Shopping",
     priority: "high",
     dueAt: inDays(2, 12),
     done: false,
@@ -148,7 +150,6 @@ export const reminders: Reminder[] = [
     id: "r8",
     title: "Prepare for exam",
     note: "Chapters 4 to 7",
-    category: "Study",
     priority: "high",
     dueAt: inDays(4, 9),
     done: false,
@@ -159,7 +160,6 @@ export const reminders: Reminder[] = [
   {
     id: "r9",
     title: "Finish online course lesson",
-    category: "Study",
     priority: "low",
     dueAt: inDays(-2, 20),
     done: true,
@@ -169,7 +169,6 @@ export const reminders: Reminder[] = [
   {
     id: "r10",
     title: "Book flight tickets",
-    category: "Travel",
     priority: "high",
     dueAt: inDays(3, 10),
     done: false,
@@ -180,7 +179,6 @@ export const reminders: Reminder[] = [
     id: "r11",
     title: "Renew passport",
     note: "Check the opening hours first",
-    category: "Travel",
     priority: "medium",
     dueAt: inDays(14, 9),
     done: false,
@@ -190,7 +188,6 @@ export const reminders: Reminder[] = [
   {
     id: "r12",
     title: "Pay credit card",
-    category: "Finance",
     priority: "high",
     dueAt: inDays(0, 14),
     done: false,
@@ -200,7 +197,6 @@ export const reminders: Reminder[] = [
   {
     id: "r13",
     title: "Review monthly budget",
-    category: "Finance",
     priority: "low",
     dueAt: inDays(7, 18),
     done: false,
@@ -211,7 +207,6 @@ export const reminders: Reminder[] = [
     id: "r14",
     title: "Call Peter",
     note: "Plan the weekend",
-    category: "Friends",
     priority: "low",
     dueAt: inDays(1, 17),
     done: false,
@@ -221,7 +216,6 @@ export const reminders: Reminder[] = [
   {
     id: "r15",
     title: "Movie night with friends",
-    category: "Friends",
     priority: "medium",
     dueAt: inDays(6, 20),
     done: false,
@@ -231,7 +225,6 @@ export const reminders: Reminder[] = [
   {
     id: "r16",
     title: "Back up photos",
-    category: "General",
     priority: "low",
     done: false,
     createdAt: ago(12),
@@ -240,7 +233,6 @@ export const reminders: Reminder[] = [
   {
     id: "r17",
     title: "Water the plants",
-    category: "General",
     priority: "low",
     dueAt: inDays(0, 8),
     done: true,

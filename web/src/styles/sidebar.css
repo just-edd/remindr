@@ -202,13 +202,15 @@ aside .categories button {
     justify-content: space-between;
 }
 
-.category .left-side {
+.category .left-side,
+.category .right-side {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.category .left-side .icon-box {
+.category .left-side .icon-box,
+.category .right-side .icon-box {
     background: #ffffff;
     width: 1.5rem;
     height: 1.5rem;
@@ -216,7 +218,6 @@ aside .categories button {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .category:hover .left-side .icon-box,
@@ -238,6 +239,28 @@ aside .categories button {
     font-size: 13px;
     color: var(--color-text-muted);
     line-height: 1;
+}
+
+.category .right-side .icon-box i {
+    background: linear-gradient(135deg, #f85032 0%, #e73827 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.category .right-side .icon-box {
+    opacity: 0;
+    background: none;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+.category .right-side .icon-box:hover {
+    background-color: #ffffff;
+}
+
+.category:hover .right-side .icon-box {
+    opacity: 1;
 }
 
 .category::before {
