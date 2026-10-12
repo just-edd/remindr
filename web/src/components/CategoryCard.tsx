@@ -1,19 +1,28 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Category  } from "../types/reminder";
 import { formatDate } from "../utils/dates";
+import { useRemindersContext } from "../context/RemindersContext";
 
 interface CategoryProps {
     data: Category; 
-    activeCategory?: boolean;
+    activeCategory?: string | null;
     setActiveCategory?: Dispatch<SetStateAction<string | null>>;
     count?: number;
-    onRemoveCategory?: (id: string) => void;
+    canRemove?: boolean;
 };
 
-const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActiveCategory, count, onRemoveCategory }) => {
+const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActiveCategory, count, canRemove }) => {
+    const { removeCategory } = useRemindersContext();
+
+    const deleteCategory = async (id: string) => {
+        await removeCategory(id);
+        if (activeCategory === id)
+            setActiveCategory?.(null);
+    };
+
     return (
-        <div className={`category ${activeCategory && 'active'}`} style={{ '--card-color': data.color || "var(--color-category-default)" } as React.CSSProperties}
-        onClick={() => setActiveCategory?.(activeCategory ? null : data.id)}>
+        <div className={`category ${activeCategory === data.id || (!canRemove && data.name.trim()) ? 'active' : ''}`} style={{ '--card-color': data.color || "var(--color-category-default)" } as React.CSSProperties}
+        onClick={() => setActiveCategory?.(activeCategory === data.id ? null : data.id)}>
             <div className="left-side">
                 {data.icon && 
                     <div className="icon-box">
@@ -28,8 +37,8 @@ const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActive
             </div>
 
             <div className="right-side">
-                {onRemoveCategory && (
-                    <div className="icon-box" onClick={(e) => { e.stopPropagation(); onRemoveCategory(data.id); }}>
+                {canRemove && (
+                    <div className="icon-box" onClick={(e) => { e.stopPropagation(); deleteCategory(data.id); }}>
                         <i className="hgi hgi-stroke hgi-rounded hgi-delete-02"></i>
                     </div>
                 )}

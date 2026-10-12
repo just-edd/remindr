@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../styles/modal.css';
 import CategoryCard from './CategoryCard';
 import type { Category, NewCategory } from '../types/reminder';
+import { useRemindersContext } from '../context/RemindersContext';
 
 type CategoryForm = NewCategory & {
     color1: string;
@@ -10,10 +11,10 @@ type CategoryForm = NewCategory & {
 
 interface Props {
     onClose?: () => void;
-    onCreate?: (category: NewCategory) => void;
 };
 
-const CategoryModal: React.FC<Props> = ({ onClose, onCreate }) => {
+const CategoryModal: React.FC<Props> = ({ onClose }) => {
+    const { categories, addCategory } = useRemindersContext();
     const [data, setData] = useState<CategoryForm>({
         name: '',
         icon: '',
@@ -35,6 +36,17 @@ const CategoryModal: React.FC<Props> = ({ onClose, onCreate }) => {
         ...category,
         id: 'preview',
         createdAt: new Date(),
+    };
+
+    const createCategory = async (category: NewCategory) => {
+        const name = category.name.trim();
+        if (!name) return;
+
+        // Check if category already exists
+        if (categories.some((c) => c.name.toLowerCase() === name.toLowerCase())) return;
+
+        await addCategory({ ...category, name });
+        onClose?.();
     };
 
     return (
@@ -75,11 +87,11 @@ const CategoryModal: React.FC<Props> = ({ onClose, onCreate }) => {
                 </div>
 
                 <p>Preview</p>
-                <CategoryCard data={preview} activeCategory={data.name !== ''} />
+                <CategoryCard data={preview} activeCategory={data.name} />
 
                 <footer>
                     <button onClick={onClose} className='cancel'>Cancel</button>
-                    <button onClick={() => onCreate?.(category)} className='create' disabled={!data.name.trim()}>Create</button>
+                    <button onClick={() => createCategory(category)} className='create' disabled={!data.name.trim()}>Create</button>
                 </footer>
             </div>
         </div>
