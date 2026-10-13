@@ -45,7 +45,7 @@ section main::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
 section main {
     width: calc(100% + var(--padding) / 2);
     height: 100%;
-     margin-right: calc(var(--padding) / -2);
+    margin-right: calc(var(--padding) / -2);
     padding-right: calc(var(--padding) / 2);
     display: flex;
     flex-direction: column;
@@ -53,105 +53,93 @@ section main {
 }
 
 /* Reminder */
-section main .reminder:last-child { border-bottom: none; }
-section main .reminder {
-    border-bottom: solid 1px rgba(255, 255, 255, 0.06);
+.reminder {
     color: var(--color-text);
+    padding: 0.5rem 0;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0.5rem 0;
-}
+    &:not(:last-child) {
+        border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    .left-side {
+        display: flex;
+        gap: 0.5rem;
 
-section main .reminder .left-side button {
-    background: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
+        i {
+            font-size: 13px;
+        }
 
-section main .reminder .left-side button i {
-    background: linear-gradient(135deg, #a78bfa, #60a5fa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-}
+        .description {
+            display: flex;
+            flex-direction: column;
+            gap: 0rem;
+            line-height: 0.9rem;
 
-section main .reminder.done .left-side button i { 
-    background: linear-gradient(135deg, #34d399, #22c55e);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-}
+            span {
+                color: var(--color-text-muted);
+                font-size: 14px;
+            }
+        }
+    }
 
-section main .reminder .left-side {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+    .right-side {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-weight: 500;
 
-section main .reminder .left-side .description {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 16px;
-}
-section main .reminder .left-side .description .note {
-    font-size: 14px;
-    color: var(--color-text-muted);
-    line-height: 0.6rem;
-}
+        .priority-level {
+            background: linear-gradient(135deg, var(--color1), var(--color2));
+            color: transparent;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-section main .reminder .right-side {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 14px;
-}
+        i {
+            background: linear-gradient(135deg, #ffc233, #ff9500);
+            color: transparent;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+    }
 
-section main .reminder .meta {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    margin-top: 0.4rem;
-    font-size: 13px;
-    color: var(--color-text-muted);
-}
+    .meta {
+        margin-top: 0.3rem;
+        font-size: 13px;
+        display: inline-flex;
+        gap: 0.25rem;
+        align-self: flex-start;
 
-section main .reminder .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.1rem 0.5rem;
-    border-radius: 0.3rem;
-    background: rgba(255, 255, 255, 0.08);
-}
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 13px;
+            color: var(--color-text-muted);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.2rem;
 
-section main .reminder .chip i {
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-}
+            &:not(.due) i {
+                background: var(--cat-color);
+                background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+            }
 
-section main .reminder .due {
-    padding: 0.1rem 0.5rem;
-    border-radius: 0.3rem;
-    background: rgba(255, 255, 255, 0.08);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
+            &.overdue {
+                background: rgba(255, 107, 107, 0.12);
 
-section main .reminder .due.overdue { color: #f87171; }
-section main .reminder .priority.high { color: #f87171; }
-section main .reminder .priority.medium { color: #fbbf24; }
-section main .reminder .priority.low { color: var(--color-text-muted); }
-section main .reminder .flag { color: #fbbf24; }
-
-section main .reminder.done .description p {
-    text-decoration: line-through;
-    color: var(--color-text-muted);
+                i, p {
+                    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+    }
 }
