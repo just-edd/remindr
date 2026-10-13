@@ -1,7 +1,13 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { Category  } from "../types/reminder";
-import { formatDate } from "../utils/dates";
 import { useRemindersContext } from "../context/RemindersContext";
+
+const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat('en-EN', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    }).format(date);
 
 interface CategoryProps {
     data: Category; 
@@ -32,7 +38,7 @@ const CategoryCard: React.FC<CategoryProps> = ({ data, activeCategory, setActive
 
                 <div className="description" style={{ paddingLeft: !data.icon ? '0.5rem' : '0' }}>
                     <p>{data.name}</p>
-                    <span>Created at {formatDate(data.createdAt)}</span>
+                    <span>Created on {formatDate(data.createdAt)}</span>
                 </div>
             </div>
 

@@ -55,90 +55,137 @@ section main {
 /* Reminder */
 .reminder {
     color: var(--color-text);
-    padding: 0.5rem 0;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    padding: 0.6rem 0;
     &:not(:last-child) {
-        border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+        border-bottom: solid 1px rgba(255, 255, 255, 0.05);
     }
-    
+
+    &.done {
+        .description > p {
+            text-decoration: line-through;
+            color: var(--color-text-muted);
+        }
+
+        .meta, .note {
+            opacity: 0.5;
+        }
+
+        .left-side > i {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .chip.due {
+            background: rgba(67, 233, 123, 0.15);
+            color: #43e97b;
+
+            i {
+                background: linear-gradient(135deg, #43e97b, #38f9d7);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+        }
+    }
+
     .left-side {
         display: flex;
         gap: 0.5rem;
 
-        i {
+        & > i {
+            background: linear-gradient(135deg, #7c5cff, #4cc9f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
             font-size: 13px;
+            cursor: pointer;
         }
 
         .description {
             display: flex;
             flex-direction: column;
-            gap: 0rem;
             line-height: 0.9rem;
 
-            span {
+            .note {
                 color: var(--color-text-muted);
-                font-size: 14px;
+                font-size: 15px;
             }
         }
     }
 
+    &:hover .right-side i {
+        opacity: 1;
+    }
+
     .right-side {
+        color: var(--color-text-muted);
         display: inline-flex;
         align-items: center;
-        gap: 0.3rem;
-        font-weight: 500;
-
-        .priority-level {
-            background: linear-gradient(135deg, var(--color1), var(--color2));
-            color: transparent;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        gap: 0.5rem;
 
         i {
-            background: linear-gradient(135deg, #ffc233, #ff9500);
-            color: transparent;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        &.flagged {
+            & > i {
+                opacity: 1;
+                background: linear-gradient(135deg, #ff9500, #f06242);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .priority {
             font-weight: 600;
+            &.high { color: #ff6b6b; }
+            &.medium { color: #ff9500 }
+            &.low { color: var(--color-text-muted) }
         }
     }
 
     .meta {
-        margin-top: 0.3rem;
-        font-size: 13px;
         display: inline-flex;
+        align-items: center;
+        margin-top: 0.4rem;
         gap: 0.25rem;
-        align-self: flex-start;
+        font-size: 14px;
 
         .chip {
+            background: rgba(255, 255, 255, 0.1);
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 13px;
+            gap: 0.5rem;
+            padding: 0.2rem 0.5rem;
             color: var(--color-text-muted);
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.2rem 0.4rem;
-            border-radius: 0.2rem;
-
-            &:not(.due) i {
-                background: var(--cat-color);
-                background-clip: text;
-                color: transparent;
-                -webkit-text-fill-color: transparent;
-            }
+            border-radius: 0.3rem;
 
             &.overdue {
-                background: rgba(255, 107, 107, 0.12);
+                background: rgba(255, 69, 58, 0.15);
+                color: #ff6b6b;
 
-                i, p {
-                    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+                i {
+                    background: linear-gradient(135deg, #ff6b6b, #ff9966);
                     background-clip: text;
                     -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
                 }
+            }
+
+            i {
+                background: var(--color-category-default);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+                font-size: inherit;
             }
         }
     }

@@ -1,17 +1,14 @@
-export const isToday = (date: Date): boolean => {
-    const today = new Date();
+const startOfDay = (d: Date) =>
+    new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
 
-    return (
-        date.getFullYear() === today.getFullYear() &&
-        date.getMonth() === today.getMonth() &&
-        date.getDate() === today.getDate()
-    );
+const addDays = (d: Date, days: number) => {
+    const copy = new Date(d);
+    copy.setDate(copy.getDate() + days);
+    return copy;
 };
 
-export const formatDate = (date: Date): string => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+export const isSameDay = (a: Date, b: Date) => startOfDay(a) === startOfDay(b);
 
-    return `${year}-${month}-${day}`;
-};
+export const isToday = (date: Date) => isSameDay(date, new Date());
+export const isTomorrow = (date: Date) => isSameDay(date, addDays(new Date(), 1));
+export const isYesterday = (date: Date) => isSameDay(date, addDays(new Date(), -1));
