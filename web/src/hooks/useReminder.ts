@@ -49,6 +49,11 @@ export function useReminders() {
         await reload();
     };
 
+    const toggleFlag = async (reminder: Reminder) => {
+        await storage.saveReminder({ ...reminder, flagged: !reminder.flagged, updatedAt: new Date() });
+        await reload();
+    }
+
     const removeCategory = async (id: string) => {
         await storage.deleteCategory(id);
         await reload();
@@ -66,6 +71,6 @@ export function useReminders() {
 
     return {
         categories, reminders, loading,
-        addCategory, addReminder, toggleDone, removeCategory, removeReminder, resetDevData,
+        addCategory, addReminder, toggleDone, toggleFlag, removeCategory, removeReminder, resetDevData,
     };
 }
